@@ -58,9 +58,12 @@ export async function POST(req: NextRequest) {
 
     if (webhookUrl) {
       const transcript: ConversationMessage[] = [
-        ...messages,
+        ...messages.map((msg): ConversationMessage => ({
+          role: msg.role,
+          content: msg.content,
+        })),
         { role: "assistant", content: assistantMessage },
-      ].map((msg) => ({ role: msg.role, content: msg.content }));
+      ];
 
       sendConversationToAppsScript(webhookUrl, transcript).catch((docError) => {
         console.error("Failed to send conversation to Apps Script", docError);
