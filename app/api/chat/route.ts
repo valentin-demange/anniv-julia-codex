@@ -20,12 +20,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const messages: ChatMessage[] = incoming
-      .map((msg: any) => ({
+    const messages = incoming
+      .map((msg: any): ChatMessage => ({
         role: msg?.role === "assistant" ? "assistant" : "user",
         content: typeof msg?.content === "string" ? msg.content : "",
       }))
-      .filter((msg: ChatMessage) => msg.content.trim().length > 0);
+      .filter((msg) => msg.content.trim().length > 0);
 
     if (messages.length === 0) {
       return NextResponse.json(
