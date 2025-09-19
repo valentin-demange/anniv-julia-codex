@@ -98,14 +98,14 @@ export function ChatPanel() {
         <h1 className="hero-title">Mission Anniversaire de Julia 🎉</h1>
         <p className="hero-subtitle">
           Laisse-toi guider par notre IA party-planner pour choisir le spectacle de stand-up parfait.
-          Les copains n'attendent plus que ton feu vert, ma queen !
+          Les copains n&apos;attendent plus que ton feu vert, ma queen !
         </p>
       </div>
 
       <div className="chat-window" ref={windowRef}>
         {messages.map((message) => (
           <article key={message.id} className={clsx("message", message.role)}>
-            <span>{message.content}</span>
+            <p className="message-text">{message.content}</p>
             <span className="message-time">{formatTime(message.createdAt)}</span>
           </article>
         ))}
@@ -123,7 +123,7 @@ export function ChatPanel() {
           disabled={isLoading}
         />
         <div className="status-line">
-          {isLoading ? "Julia parle, l'IA prend des notes..." : "Prête à t'écouter."}
+          {isLoading ? "Julia parle, l&apos;IA prend des notes..." : "Prête à t&apos;écouter."}
           {error ? <span className="error-line">{error}</span> : null}
         </div>
         <button type="submit" className="chat-submit" disabled={isLoading}>
